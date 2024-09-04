@@ -11,7 +11,7 @@
 	<groupId>com.api</groupId>
 	<artifactId>Auth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AutoTech Auth</name>
+	<name>AuthMicroservice</name>
 	<description>Microservice for registration and autentication</description>
 	<url/>
 	<licenses>
