@@ -3,6 +3,7 @@ package com.api.Auth.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,9 @@ import com.api.Auth.services.exceptions.ObjectNotFoundException;
 public class UserService {
     
     @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     public User getUserbyId(Long id){
@@ -29,6 +33,7 @@ public class UserService {
     @Transactional
     public User createUser(User obj){
         obj.setId(null);
+        obj.setPassword(this.bCryptPasswordEncoder.encode(obj.getPassword()));
         obj = this.userRepository.save(obj);
         return obj;
     }
@@ -37,6 +42,7 @@ public class UserService {
     public User updatePassword(User obj){
         User newObj = getUserbyId(obj.getId());
         newObj.setPassword(obj.getPassword());
+        newObj.setPassword(this.bCryptPasswordEncoder.encode(obj.getPassword()));
         return this.userRepository.save(newObj);
     }
 
