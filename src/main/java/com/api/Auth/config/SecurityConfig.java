@@ -27,7 +27,7 @@ public class SecurityConfig {
     };
 
     private static final String[] PUBLIC_MATCHERS_POST = {
-        "/user",
+        "/user/create",
         "/login"
     };
     
@@ -45,7 +45,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-    
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
